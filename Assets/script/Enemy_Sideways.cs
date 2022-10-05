@@ -15,7 +15,22 @@ public class Enemy_Sideways : MonoBehaviour
         rightEdge = transform.position.x + movementDistance;
     }
 
-    private void Update()
+    private void EnemySidewayUpdate()
+    {
+        EnemyWalking();
+    }
+
+
+    private void AttackPlayer(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            collision.GetComponent<Health>().TakeDamage(damage);
+        }
+    }
+
+    
+    private void EnemyWalking()
     {
         if (movingLeft)
         {
@@ -34,14 +49,6 @@ public class Enemy_Sideways : MonoBehaviour
             }
             else
                 movingLeft = true;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            collision.GetComponent<Health>().TakeDamage(damage);
         }
     }
 }

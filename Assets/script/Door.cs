@@ -6,7 +6,16 @@ public class Door : MonoBehaviour
     [SerializeField] private Transform nextRoom;
     [SerializeField] private CameraController cam;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void GoNextStaging(Collider2D collision)
+    {
+        GoNextStage(collision);
+    }
+
+
+
+
+
+private void GoNextStage(Collider2D collision)
     {
         if (collision.tag == "Player")
         {

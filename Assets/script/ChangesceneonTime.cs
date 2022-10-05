@@ -10,6 +10,11 @@ public class ChangesceneonTime : MonoBehaviour
     
     private void Update()
     {
+       Updatetime();
+    }
+
+    private void Updatetime()
+    {
         changeTime -= Time.deltaTime;
         if (changeTime <= 0)
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

@@ -11,20 +11,45 @@ public class MoveMentJoystick : MonoBehaviour
     public Vector2 joystickOriginalPos;
     private float joystickRadius;
 
-    void Start()
+    void Stick()
     {
         joystickOriginalPos = joystickBG.transform.position;
         joystickRadius = joystickBG.GetComponent<RectTransform>().sizeDelta.y / 4;
-
-
     }
     public void PointerDown()
+    {
+        Pointdown();
+    }
+    public void Drag(BaseEventData baseEventData)
+    {
+        DragJoin(baseEventData);
+    }
+
+    public void PointerUp()
+    {
+        Pointup();
+    }
+
+
+
+
+
+    private void Pointup()
+    {
+        joystickVec = Vector2.zero;
+        joystick.transform.position = joystickOriginalPos;
+        joystickBG.transform.position = joystickOriginalPos;
+    }
+
+
+
+    private void Pointdown()
     {
         joystick.transform.position = Input.mousePosition;
         joystickBG.transform.position = Input.mousePosition;
         joystickTouchPos = Input.mousePosition;
     }
-    public void Drag(BaseEventData baseEventData)
+            private void DragJoin(BaseEventData baseEventData)
     {
         PointerEventData pointerEventData = baseEventData as PointerEventData;
         Vector2 dragPos = pointerEventData.position;
@@ -39,13 +64,5 @@ public class MoveMentJoystick : MonoBehaviour
             joystick.transform.position = joystickTouchPos + joystickVec * joystickRadius;
         }
     }
-
-        public void PointerUp()
-        {
-        joystickVec = Vector2.zero;
-        joystick.transform.position = joystickOriginalPos;
-        joystickBG.transform.position = joystickOriginalPos;
-        }
-            
     }    
 

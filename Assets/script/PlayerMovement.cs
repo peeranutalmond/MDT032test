@@ -14,13 +14,10 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("SFX")]
     [SerializeField] private AudioClip JumpSound;
-    private void Awake()
+    private void Rigidbody()
     {
-        body = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        Rigid();
     }
-
     private void Update()
     {
         jumpcooldown();
@@ -29,19 +26,36 @@ public class PlayerMovement : MonoBehaviour
     
     private bool isGrounded()
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
-        return raycastHit.collider != null;
+        return Onground();
     }
+
+  
     private bool onWall()
+    {
+        return Onwalljump();
+    }
+
+    private bool Onwalljump()
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
         return raycastHit.collider != null;
     }
-    public bool canAttack()
+    private bool Onground()
+    {
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
+        return raycastHit.collider != null;
+    }
+
+    public bool groundandwall()
     {
         return horizontalInput == 0 && isGrounded() && !onWall();
     }
-    
+     private void Rigid()
+    {
+        body = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        boxCollider = GetComponent<BoxCollider2D>();
+    }
    private void jumpcooldown()
    {horizontalInput = Input.GetAxis("Horizontal");
         //Flip player when moving left-right
@@ -54,8 +68,6 @@ public class PlayerMovement : MonoBehaviour
         
         anim.SetBool("run", horizontalInput != 0);
         anim.SetBool("grounded", isGrounded());
-
-       
         if (wallJumpCooldown > 0.2f)
         {
             body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);

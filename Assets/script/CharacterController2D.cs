@@ -11,7 +11,6 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Transform m_GroundCheck;                           
 	[SerializeField] private Transform m_CeilingCheck;                         
 	[SerializeField] private Collider2D m_CrouchDisableCollider;                
-
 	const float k_GroundedRadius = .2f; 
 	private bool m_Grounded;
 	const float k_CeilingRadius = .2f; 
@@ -29,6 +28,22 @@ public class CharacterController2D : MonoBehaviour
     {
         RigidbodyCom();
     }
+    private void FixedUpdate()
+    {
+        Ground();
+    }
+    public void Move(float move, bool crouch, bool jump)
+    {
+       Movementfloat(ref move, ref crouch, jump);
+    }
+    
+    private void Flip()
+    {
+        FlipFace();
+    }
+
+    
+
 
     private void RigidbodyCom()
     {
@@ -39,30 +54,22 @@ public class CharacterController2D : MonoBehaviour
         if (OnCrouchEvent == null)
             OnCrouchEvent = new BoolEvent();
     }
-
-    private void FixedUpdate()
-	{
-		bool wasGrounded = m_Grounded;
-		m_Grounded = false;
-		Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
-		for (int i = 0; i < colliders.Length; i++)
-		{
-			if (colliders[i].gameObject != gameObject)
-			{
-				m_Grounded = true;
-				if (!wasGrounded)
-					OnLandEvent.Invoke();
-			}
-		}
-	}
-
-
-	public void Move(float move, bool crouch, bool jump)
+	 private void Ground()
     {
-       Movementfloat(ref move, ref crouch, jump);
+        bool wasGrounded = m_Grounded;
+        m_Grounded = false;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].gameObject != gameObject)
+            {
+                m_Grounded = true;
+                if (!wasGrounded)
+                    OnLandEvent.Invoke();
+            }
+        }
     }
-
-    private void Movementfloat(ref float move, ref bool crouch, bool jump)
+	private void Movementfloat(ref float move, ref bool crouch, bool jump)
     {
         if (crouch)
         {
@@ -115,15 +122,11 @@ public class CharacterController2D : MonoBehaviour
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         }
     }
-
-    private void Flip()
-	{
-		// Switch the way the player is labelled as facing.
-		m_FacingRight = !m_FacingRight;
-
-		// Multiply the player's x local scale by -1.
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
-	}
+	private void FlipFace()
+    {
+        m_FacingRight = !m_FacingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+    }
 }

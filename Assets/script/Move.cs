@@ -11,7 +11,7 @@ public class Move : MonoBehaviour
     public float speed = 10;
     public float jumpSpeed = 20;
     // Start is called before the first frame update
-    void Start()
+    void Startmove()
     {
         rb = GetComponent<Rigidbody2D>();
 
