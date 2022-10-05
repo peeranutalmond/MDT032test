@@ -14,11 +14,35 @@ public class playermovementjoy : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (movementJoystick.joystickVec.y != 0) 
+      Fixed();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private void Fixed(){
+          if (movementJoystick.joystickVec.y != 0) 
         {
             rb.velocity = new Vector2(movementJoystick.joystickVec.x * playerSpeed, movementJoystick.joystickVec.y * playerSpeed);
         }
-
         else
         {
             rb.velocity = Vector2.zero;

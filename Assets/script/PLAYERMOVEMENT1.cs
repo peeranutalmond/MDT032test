@@ -24,6 +24,17 @@ public class PLAYERMOVEMENT : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        verticalmove();
+    }
+    private void FixedUpdate()
+    {
+
+        controller.Move(horizontalmove * Time.fixedDeltaTime, crouch, jump);
+        jump = false;
+    }
+
+    private void verticalmove()
+    {
         horizontalmove = x = mj.Horizontal * speed;
         rb.velocity = new Vector2(x * speed, rb.velocity.y);
         float verticalmove = mj.Vertical * jumpspeed;
@@ -44,11 +55,5 @@ public class PLAYERMOVEMENT : MonoBehaviour
         {
             crouch = false;
         }
-    }
-    private void FixedUpdate()
-    {
-
-        controller.Move(horizontalmove * Time.fixedDeltaTime, crouch, jump);
-        jump = false;
     }
 }
