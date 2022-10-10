@@ -23,18 +23,15 @@ public class PlayerMovement : MonoBehaviour
         jumpcooldown();
          jumpping();
     }
-    
     private bool isGrounded()
     {
         return Onground();
     }
-
-  
     private bool onWall()
     {
         return Onwalljump();
     }
-
+    //private long code
     private bool Onwalljump()
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);

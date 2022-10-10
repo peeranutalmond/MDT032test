@@ -23,6 +23,8 @@ public class Move : MonoBehaviour
     {
         MovePlayer();
     }
+
+    //private
     private void MovePlayer()
     {
         moveleft();

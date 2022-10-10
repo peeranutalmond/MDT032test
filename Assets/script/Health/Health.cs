@@ -15,10 +15,25 @@ public class Health : MonoBehaviour
 
     private void Awake()
     {
+        Healthcurrent();
+    }
+    public void TakeDamage(float _damage)
+    {
+        Damage(_damage);
+
+    }
+    public void AddHealth(float _value)
+    {
+        NowHP(_value);
+    }
+
+    //private void
+    private void Healthcurrent()
+    {
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
     }
-    public void TakeDamage(float _damage)
+    private void Damage(float _damage)
     {
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
 
@@ -27,7 +42,6 @@ public class Health : MonoBehaviour
             anim.SetTrigger("hurt");
             SoundManager.instance.PlaySound(hurtSound);
         }
-       
         else
         {
             if (!dead)
@@ -36,20 +50,11 @@ public class Health : MonoBehaviour
                 GetComponent<PlayerMovement>().enabled = false;
                 dead = true;
                 SoundManager.instance.PlaySound(deathSound);
-                
-                
-                 
-                    SceneManager.LoadScene("MainMenu");
-                
-
-                
+                SceneManager.LoadScene("MainMenu");
             }
         }
-        
-        
     }
-    
-    public void AddHealth(float _value)
+     private void NowHP(float _value)
     {
         currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
     }

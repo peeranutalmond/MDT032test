@@ -26,13 +26,14 @@ public class PLAYERMOVEMENT : MonoBehaviour
     {
         verticalmove();
     }
+
+//private code
     private void FixedUpdate()
     {
 
         controller.Move(horizontalmove * Time.fixedDeltaTime, crouch, jump);
         jump = false;
     }
-
     private void verticalmove()
     {
         horizontalmove = x = mj.Horizontal * speed;
@@ -41,7 +42,6 @@ public class PLAYERMOVEMENT : MonoBehaviour
         if (verticalmove >= 7f)
         {
             jump = true;
-            //GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpvelocity;   
         }
         if (verticalmove > -1f)
         {

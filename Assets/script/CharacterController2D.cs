@@ -42,9 +42,7 @@ public class CharacterController2D : MonoBehaviour
         FlipFace();
     }
 
-    
-
-
+//private code rigid
     private void RigidbodyCom()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();

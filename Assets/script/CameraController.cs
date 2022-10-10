@@ -18,6 +18,7 @@ public class CameraController : MonoBehaviour
         CameraControll();
     }
 
+//private void
     private void CameraControll()
     {
         transform.position = Vector3.SmoothDamp(transform.position, new Vector3(currentPosX, transform.position.y, transform.position.z), ref velocity, speed);

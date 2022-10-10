@@ -12,12 +12,6 @@ public class SoundManager : MonoBehaviour
     {
         source.PlayOneShot(_sound);
     }
-
-
-
-
-
-
     private void loadplaysong()
     {
         source = GetComponent<AudioSource>();

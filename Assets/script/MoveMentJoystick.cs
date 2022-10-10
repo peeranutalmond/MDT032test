@@ -31,18 +31,13 @@ public class MoveMentJoystick : MonoBehaviour
     }
 
 
-
-
-
+//Point
     private void Pointup()
     {
         joystickVec = Vector2.zero;
         joystick.transform.position = joystickOriginalPos;
         joystickBG.transform.position = joystickOriginalPos;
     }
-
-
-
     private void Pointdown()
     {
         joystick.transform.position = Input.mousePosition;

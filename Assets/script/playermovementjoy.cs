@@ -16,28 +16,7 @@ public class playermovementjoy : MonoBehaviour
     {
       Fixed();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//private 
     private void Fixed(){
           if (movementJoystick.joystickVec.y != 0) 
         {

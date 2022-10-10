@@ -17,10 +17,8 @@ public class Enemy_Sideways : MonoBehaviour
 
     private void EnemySidewayUpdate()
     {
-        EnemyWalking();
+        EnemyWalk();
     }
-
-
     private void AttackPlayer(Collider2D collision)
     {
         if (collision.tag == "Player")
@@ -30,7 +28,7 @@ public class Enemy_Sideways : MonoBehaviour
     }
 
     
-    private void EnemyWalking()
+    private void EnemyWalk()
     {
         if (movingLeft)
         {
