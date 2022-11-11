@@ -16,6 +16,7 @@ public class MoveMentJoystick : MonoBehaviour
         joystickOriginalPos = joystickBG.transform.position;
         joystickRadius = joystickBG.GetComponent<RectTransform>().sizeDelta.y / 4;
     }
+    //stickขึ้นลง
     public void PointerDown()
     {
         Pointdown();

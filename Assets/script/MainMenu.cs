@@ -8,9 +8,11 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Cutscene");
     }
+    //เอาไว้เล่นเกม
     public void QuitGame()
     {
         Application.Quit();
         Debug.Log("Game Closed");
     }
+    //เอาไว้ออกเกม
 }
