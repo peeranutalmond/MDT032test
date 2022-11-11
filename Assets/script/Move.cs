@@ -21,11 +21,11 @@ public class Move : MonoBehaviour
    
     void Update()
     {
-        MovePlayer();
+        MovePlayerOrder();
     }
 
     //private
-    private void MovePlayer()
+    private void MovePlayerOrder()
     {
         moveleft();
     }

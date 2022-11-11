@@ -12,4 +12,5 @@ public class HealthCollectible : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+     //ผมไม่รู้จะ clean อะไรแล้วครับผมคิดว่ามัน CLEAN แล้วTT ขอโทษครับผมกลัวบัค
 }

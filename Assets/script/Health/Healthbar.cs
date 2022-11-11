@@ -15,4 +15,5 @@ public class Healthbar : MonoBehaviour
     {
         currenthealth.fillAmount = playerHealth.currentHealth / 10;
     }
+        //ผมไม่รู้จะ clean อะไรแล้วครับผมคิดว่ามัน CLEAN แล้วTT ขอโทษครับ
 }
